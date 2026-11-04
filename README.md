@@ -4,7 +4,10 @@ HW2HACKEDCLIENT - Installation & Usage Guide
 
 FEATURES / WHAT IT CAN DO
 -------------------------
-  • Injects a "Local unlocks" button into the game's Config/Profile menu
+  • Injects a full cheat menu ("HW2HACKEDCLIENT Menu") into the game's Config/Profile menu
+  • Menu items: Aim assist, Aim (hold), aimKey, aimMaxDistM, Silent aim, ESP, espMaxDistM,
+    No spread / nospread / Spread zeroes, menuKey, GlobalUnlock, Local unlocks,
+    Visibility, Reset Visibility
   • Sets player/account level to 100
   • Maxes out all weapon challenge stats (kills, headshots, ADS, hipfire, etc.)
   • Patches the game DLL (HW2HACKEDCLIENT_internal.dll) with a menu hook
@@ -12,6 +15,67 @@ FEATURES / WHAT IT CAN DO
   • Verifies unlocks were applied correctly (check_unlock.py)
   • Launches a local-only / offline session with network calls blocked
   • Backs up save files before applying any modifications
+
+THE IN-GAME MENU
+----------------
+  patch_menu.py injects a full cheat menu into the game's Config/Profile menu
+  (implemented via ImGui immediate-mode UI hooked into the game DLL):
+
+    Menu title:  HW2HACKEDCLIENT Menu
+
+  Menu items:
+
+    • Local unlocks
+        Applies local save-game unlocks (level 100, maxed weapon stats).
+        Writes unlock.request for the background worker to process.
+
+    • GlobalUnlock
+        Global unlock flag for all content.
+
+    • Aim assist
+        Assists aim toward targets.
+
+    • Aim (hold)
+        Aim assist active only while the aim key is held down.
+
+    • aimKey / Key (hold)
+        Configures the hold key for aim assist.
+
+    • aimMaxDistM
+        Maximum distance (meters) for aim assist to engage.
+
+    • Silent aim
+        Hits register without visibly aiming at the target.
+
+    • ESP
+        Enemy ESP / wallhack visibility.
+
+    • espMaxDistM
+        Maximum distance (meters) for ESP rendering.
+
+    • No spread / nospread / Spread zeroes
+        Removes weapon spread so shots go exactly where aimed.
+
+    • menuKey
+        Key to toggle the menu open/closed.
+
+    • Visibility
+        Enemy visibility / line-of-sight checks.
+
+    • Reset Visibility
+        Resets visibility state.
+
+  Clicking "Local unlocks" writes an unlock.request file that the background
+  unlock worker picks up. The menu then shows one of these statuses:
+
+    • Queued - restart HW2HACKEDCLIENT.
+        The request has been queued; the worker will apply it once the game is closed.
+    • Available after restarting HW2HACKEDCLIENT.
+        The unlock has been applied; relaunch the game to see the changes.
+
+  The worker writes unlock.status and unlock.request files in
+  $HOME/HW2HACKEDCLIENT-tool-extension/ to coordinate between the in-game menu
+  and the save-patching scripts.
 
 1. WHAT THIS IS
 ---------------

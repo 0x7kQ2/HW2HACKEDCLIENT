@@ -66,8 +66,28 @@ def build(original):
     rel('e8',0x69710)  # ImGui::TextUnformatted
     emit('0f b6 44 24 40 48 83 c4 48 c3')
     label('code_end')
-    label('menu_title'); code.extend(b'HW2HACKEDCLIENT\0')
-    for name, value in [('button','Local unlocks'),('description','Cloud may restore locks.'),('queued','Queued - restart HW2HACKEDCLIENT.'),('restart','Available after restarting HW2HACKEDCLIENT.'),('request_a','Z:' + os.path.expanduser('~').replace('/', '\\') + '\\HW2HACKEDCLIENT-tool-extension\\unlock.request')]:
+    label('menu_title'); code.extend(b'HW2HACKEDCLIENT Menu\0')
+    for name, value in [
+        ('button','Local unlocks'),
+        ('description','Cloud may restore locks.'),
+        ('queued','Queued - restart HW2HACKEDCLIENT.'),
+        ('restart','Available after restarting HW2HACKEDCLIENT.'),
+        ('request_a','Z:' + os.path.expanduser('~').replace('/', '\\') + '\\HW2HACKEDCLIENT-tool-extension\\unlock.request'),
+        ('menu_aim_assist','Aim assist'),
+        ('menu_aim_hold','Aim (hold)'),
+        ('menu_aim_key','aimKey / Key (hold)'),
+        ('menu_aim_max_dist','aimMaxDistM'),
+        ('menu_esp','ESP'),
+        ('menu_esp_max_dist','espMaxDistM'),
+        ('menu_no_spread','No spread'),
+        ('menu_nospread','nospread'),
+        ('menu_spread_zeroes','Spread zeroes'),
+        ('menu_menu_key','menuKey'),
+        ('menu_global_unlock','GlobalUnlock'),
+        ('menu_silent_aim','Silent aim'),
+        ('menu_visibility','Visibility'),
+        ('menu_reset_visibility','Reset Visibility'),
+    ]:
         label(name); code.extend(value.encode() + b'\0')
     if len(code)%2: code.append(0)
     label('request_w'); code.extend(('Z:' + os.path.expanduser('~').replace('/', '\\') + '\\HW2HACKEDCLIENT-tool-extension\\unlock.request\0').encode('utf-16le'))
