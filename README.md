@@ -2,6 +2,17 @@
 HW2HACKEDCLIENT - Installation & Usage Guide
 ============================================
 
+FEATURES / WHAT IT CAN DO
+-------------------------
+  • Injects a "Local unlocks" button into the game's Config/Profile menu
+  • Sets player/account level to 100
+  • Maxes out all weapon challenge stats (kills, headshots, ADS, hipfire, etc.)
+  • Patches the game DLL (HW2HACKEDCLIENT_internal.dll) with a menu hook
+  • Runs a background unlock worker (systemd user service) that applies saves
+  • Verifies unlocks were applied correctly (check_unlock.py)
+  • Launches a local-only / offline session with network calls blocked
+  • Backs up save files before applying any modifications
+
 1. WHAT THIS IS
 ---------------
 HW2HACKEDCLIENT is a standalone client tool package. It contains:
