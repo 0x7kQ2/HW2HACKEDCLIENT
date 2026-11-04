@@ -1,0 +1,21 @@
+{
+  "original_sha256": "0788f334ed302f217fb5b8856532cdeba4585e365faa8e705d355f5b42c61177",
+  "patched_sha256": "1b71e3bfcc3549ec115f9eef058780292f64173104534ea8f13655aad2282317",
+  "hook_rva": "0xd51f",
+  "labels": {
+    "callback": "0x13f000",
+    "status": "0x13f06b",
+    "idle": "0x13f08d",
+    "text": "0x13f094",
+    "code_end": "0x13f0a5",
+    "menu_title": "0x13f0a5",
+    "button": "0x13f0b1",
+    "description": "0x13f0bf",
+    "queued": "0x13f0d8",
+    "restart": "0x13f0ee",
+    "request_a": "0x13f10e",
+    "request_w": "0x13f13c",
+    "unwind": "0x13f198",
+    "exception_table": "0x13f1a0"
+  }
+}

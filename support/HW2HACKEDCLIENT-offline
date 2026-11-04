@@ -1,0 +1,15 @@
+#!/bin/sh
+# Steam launch-options wrapper for a local-only Hood Warfare 2 session.
+# It reapplies the local progression before launch, then gives the game an
+# otherwise-normal filesystem/process view with a private, disconnected network.
+set -eu
+
+/usr/bin/python3 $HOME/unlock_HW2HACKEDCLIENT_weapons.py
+
+if [ -n "${LD_PRELOAD:-}" ]; then
+  export LD_PRELOAD="$HOME/libHW2HACKEDCLIENT-offline-net.so:$LD_PRELOAD"
+else
+  export LD_PRELOAD="$HOME/libHW2HACKEDCLIENT-offline-net.so"
+fi
+
+exec "$@"
